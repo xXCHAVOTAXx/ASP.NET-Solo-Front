@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Nombre de la aplicación</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                @*<img src="~/Content/Imagenes/Logo.png" height="40" />*@ Nombre de la aplicacion
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarSupportedContent" class="navbar-collapse collapse justify-content-between">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-fw fa-clipboard-list"></i> Menu </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Home")"><i class="fas fa-fw fa-clipboard-list"></i> Opcion 1</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">@Html.Partial("_LoginPartial")</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="text-muted">&copy; @DateTime.Now.Year - Nombre de la aplicación</p>
+        </div>
+    </footer>
+
+    @Scripts.Render(
+        "~/bundles/jquery",
+        "~/bundles/bootstrap",
+        "~/bundles/fontawesome"
+        )
+    @RenderSection("scripts", required: false)
+
+    <script>
+    </script>
+</body>
+</html>

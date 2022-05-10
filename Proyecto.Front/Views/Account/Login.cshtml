@@ -1,0 +1,130 @@
+﻿@model Proyecto.Front.Models.LoginViewModel
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Content/Imagenes/Logo fenix.png" />
+
+    @Styles.Render("~/Content/css")
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @@media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+
+        html,
+        body {
+            height: 90%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+
+            .form-signin .checkbox {
+                font-weight: 400;
+            }
+
+            .form-signin .form-floating:focus-within {
+                z-index: 2;
+            }
+
+            .form-signin input#Email {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+    </style>
+
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form", id = "loginForm" }))
+        {
+            @Html.AntiForgeryToken()
+            // Aqui va el logo del login
+            @*<img class="mb-4" src="/Content/Logo_Login.png" alt="" height="300">*@
+            <h1 class="mb-3 fw-normal">Nombre de la aplicación</h1>
+            <div class="form-floating">
+                @*<input type="email" class="form-control" id="floatingInput" placeholder="E000000">*@
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Número de empleado" })
+                <label for="Email">Número de empleado</label>
+            </div>
+            <div class="form-floating">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Contraseña" })
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            <div class="clearfix"></div>
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" }) 
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+        }
+    </main>
+
+
+
+
+
+    @*<div at-magnifier-wrapper="">
+            <div class="at-theme-light">
+                <div class="at-base notranslate" translate="no">
+                    <div class="Z1-AJ" style="top: 0px; left: 0px;"></div>
+                </div>
+            </div>
+        </div>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/fontawesome")
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (Request.IsAuthenticated)
+    {
+        <script>
+
+            $(function () {
+                window.location.href = '@Url.Action("Index", "Home")';
+            });
+        </script>
+    }
+</body>
+</html>
